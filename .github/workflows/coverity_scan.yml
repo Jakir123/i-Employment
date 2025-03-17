@@ -12,6 +12,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # Install Flutter
+      - name: Install Flutter
+        run: |
+          git clone https://github.com/flutter/flutter.git --branch stable --depth 1
+          export PATH="$PATH:`pwd`/flutter/bin"
+          flutter doctor
+
       - name: Install dependencies
         run: |
           sudo apt update
@@ -24,7 +31,7 @@ jobs:
 
       - name: Run Coverity Scan
         run: |
-          ./cov-analysis*/bin/cov-build --dir cov-int flutter build apk
+          ./cov-analysis*/bin/cov-build --dir cov-int flutter build apk  # Ensure this is the correct build command
 
       - name: Compress scan results
         run: tar czvf myproject.tgz cov-int
