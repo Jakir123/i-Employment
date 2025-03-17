@@ -33,6 +33,7 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   if(kDebugMode) {
     print('Handling a background message ${message.messageId}');
   }
+
 }
 
 _loadUserData() async{
